@@ -2,12 +2,15 @@ FROM node
 
 WORKDIR /app
 
-# 모든 폴더가 컨테이너 내 app 폴더로 복사된다.
-COPY . /app
-# = COPY . ./
+COPY package.json /app
 
 # 수행하고 싶은 커맨드 (모든 명령어는 working directory 에서 수행된다.)
 RUN npm install
+
+# 소스코드가 변경디면 여기 이하 레이어부터 재수행 (이미지의 레이어구조에 따라 최적화)
+# 모든 폴더가 컨테이너 내 app 폴더로 복사된다.
+COPY . /app 
+# = COPY . .
 
 EXPOSE 80
 
