@@ -14,6 +14,7 @@
 - Container: an isolated unit of softward which is based on an image. A running instance of that image.
 - Layers in the context of images: every instruction in an image creates a cacheable layer - layers help with image re-building and sharing.
 
+  
 # Part 2. Managing Images & Containers
 ### Docker 명령어 정리
 - `docker images` 이미지 조회
@@ -30,3 +31,10 @@
 - `--name` 컨테이너의 이름 설정
 - `--it` 컨테이너와의 I/O 인터랙션 가능하게 설정 (터미널 입력을 위한 옵션)
 - `--rm` 프로세스(컨테이너) 종료 혹은 중단(stop) 시 컨테이너 자동 제거
+
+
+# Part 3. Volumes & Bind Mounts
+- `Volume` is a folder / file inside of Docker container which is connected to some folder outside of the container. Volumes are managed by Docker, you don't necessarily know where the host folder (which is mapped to a container-internal path) is.
+- `Anonymous Volumes` are only auto-removed if the container was started with the `--rm` option. However you can use them to prioritize container-internal paths higher than external paths.
+- `Named Volumes` survive container removal.
+- `Bind Mount` is a path on your host machine, which you know and specified, that is mapped to some container-internal path. It is typically used when you want to provide "live data" to the container (no rebuilding needed).
